@@ -78,6 +78,14 @@ $FolderPaths = @(
     "SHARED DOCS/Production/freelas"
 )
 ````
+>**A string de permissão utilizada para exclusão ("Acesso Limitado") é dependente do idioma do seu site SharePoint. Se o output do script retornar o termo em outro idioma (por exemplo, "Limited Access" em inglês), você deve editar a variável correspondente no código para que reflita o termo exato no idioma do seu ambiente.**
+````
+
+63                # Skip 'Limited Access' entries, which are usually required internally by SharePoint
+64                if ($PermissionString -eq 'Acesso Limitado') { continue }
+65                if ($UserName -like 'Acesso Limitado System Group*') { continue }
+
+````                
 > **Exclui automaticamente entradas de "Limited Access"** (geradas pelo sistema SharePoint para controle interno).
 
 > [!IMPORTANT]
